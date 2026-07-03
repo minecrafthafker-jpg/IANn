@@ -1,0 +1,8 @@
+/* Styles specific to the Snake game */
+.game-container{padding:24px}
+.game-area{display:flex;gap:20px;align-items:flex-start}
+#gameCanvas{background:linear-gradient(#031025,#061428);border-radius:10px;border:2px solid rgba(255,255,255,0.04)}
+.sidebar{color:#e6eef8;font-weight:600}
+button#btnRestart{margin-top:10px;padding:8px 12px;border-radius:8px;border:none;background:#ff6b6b;color:#071024;cursor:pointer}
+.small{font-size:12px;color:#9aa4b2}
+@media(max-width:640px){.game-area{flex-direction:column;align-items:center}#gameCanvas{width:320px;height:320px}}

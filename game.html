@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IANn — Spiel (Snake)</title>
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/">IANn</a>
+      <nav class="nav">
+        <a href="/">Zurück</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container game-container">
+    <h1>IANn — Snake</h1>
+    <p class="muted">Steuere mit Pfeiltasten oder WASD. Sammle Äpfel, vermeide Wände und dich selbst.</p>
+    <div class="game-area">
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <div class="sidebar">
+        <div>Score: <span id="score">0</span></div>
+        <button id="btnRestart">Neustart</button>
+        <p class="muted small">Tip: Für mobile Geräte kannst du die Pfeile auf der Bildschirmtastatur verwenden.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 IANn — minecrafthafker-jpg</div>
+  </footer>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
