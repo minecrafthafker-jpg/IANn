@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IANn — Demo</title>
+  <title>IANn — Persönliche Seite</title>
+  <meta name="description" content="IANn — einfache, moderne One‑Page" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,7 +13,6 @@
       <a class="brand" href="#">IANn</a>
       <nav class="nav">
         <a href="#about">Über</a>
-        <a href="#features">Features</a>
         <a href="#contact">Kontakt</a>
       </nav>
     </div>
@@ -21,24 +21,15 @@
   <main>
     <section class="hero">
       <div class="container">
-        <h1>Willkommen bei IANn</h1>
-        <p>Ein einfacher, sauberer One‑Page-Auftritt — orientiert an dem verlinkten Design.</p>
-        <a class="cta" href="#contact">Jetzt Kontakt</a>
+        <h1>IANn</h1>
+        <p>Willkommen — dies ist eine einfache, schnelle Webseite, bereit für GitHub Pages oder Firebase Hosting.</p>
+        <p class="muted">Deine Seite ist vorbereitet. Füge Firebase‑Konfig in <code>js/firebase-config.js</code> ein, wenn du das Kontaktformular nutzen willst.</p>
       </div>
     </section>
 
     <section id="about" class="section container">
-      <h2>Über das Projekt</h2>
-      <p>Dies ist ein Nachbau / stark inspiriertes Design der Seite, angepasst für dein Repository.</p>
-    </section>
-
-    <section id="features" class="section features container">
-      <h2>Features</h2>
-      <div class="grid">
-        <div class="card">Modernes Layout</div>
-        <div class="card">Responsives Design</div>
-        <div class="card">Firebase‑Anbindung (optional)</div>
-      </div>
+      <h2>Über</h2>
+      <p>Dieses One‑Page Template ist leicht anzupassen. Es enthält ein Kontaktformular, das optional Firestore verwendet.</p>
     </section>
 
     <section id="contact" class="section container">
@@ -58,16 +49,23 @@
       </form>
     </section>
 
+    <section class="section container">
+      <h2>Bereit zum Deploy</h2>
+      <ol>
+        <li>GitHub Pages: Repository → Settings → Pages → Branch: <strong>main</strong> / Folder: <strong>root</strong> → Save.</li>
+        <li>Oder: Firebase Hosting — konfigurieren mit <code>firebase init hosting</code> und <code>firebase deploy</code>.</li>
+      </ol>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <div class="container">© 2026 IANn — erstellt für minecrafthafker-jpg</div>
+    <div class="container">© 2026 IANn — minecrafthafker-jpg</div>
   </footer>
 
-  <!-- Firebase (compat) - ersetze die Werte in js/firebase-config.js -->
+  <!-- Firebase (compat) - ersetze die Werte in js/firebase-config.js wenn nötig -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
   <script src="js/firebase-config.js"></script>
   <script src="js/main.js"></script>
 </body>
