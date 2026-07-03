@@ -1,5 +1,5 @@
-/* race.css - einfache Styles für das Rennspiel */
-:root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;color-scheme:dark}
+/* race.css - erweiterte Styles für das Rennspiel inkl. Touch Controls */
+:root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;--touch:#2b8cff;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;background:linear-gradient(180deg,var(--bg),#031024);color:#e6eef8}
 .container{max-width:980px;margin:0 auto;padding:24px}
@@ -7,7 +7,7 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
 .brand{font-weight:700;color:#fff;text-decoration:none}
 .nav a{color:#cfe6ff;margin-left:18px;text-decoration:none}
 .race-area{display:flex;gap:20px;align-items:flex-start}
-#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:12px;border:2px solid rgba(255,255,255,0.04)}
+#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:12px;border:2px solid rgba(255,255,255,0.04);display:block}
 .sidebar{min-width:160px;color:#e6eef8;font-weight:600}
 button{margin-top:10px;padding:8px 12px;border-radius:8px;border:none;background:var(--accent);color:#071024;cursor:pointer}
 .small{font-size:12px;color:var(--muted)}
@@ -16,4 +16,7 @@ button{margin-top:10px;padding:8px 12px;border-radius:8px;border:none;background
 .overlay-box{background:#071022;padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:280px}
 .overlay-actions{display:flex;gap:8px;margin-top:10px}
 input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit}
-@media(max-width:640px){.race-area{flex-direction:column;align-items:center}#raceCanvas{width:320px;height:533px}}
+.touch-controls{display:flex;gap:12px;justify-content:center;margin-top:18px}
+.touch-btn{width:72px;height:56px;border-radius:12px;border:none;background:var(--touch);color:white;font-size:22px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
+.touch-btn:active{transform:translateY(2px)}
+@media(max-width:640px){.race-area{flex-direction:column;align-items:center}#raceCanvas{width:320px;height:533px}.sidebar{min-width:unset}}

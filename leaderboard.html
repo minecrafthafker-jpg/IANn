@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IANn — Leaderboard</title>
+  <link rel="stylesheet" href="css/race.css">
+  <style>
+    .leaderboard{max-width:720px;margin:20px auto;background:rgba(255,255,255,0.02);padding:18px;border-radius:12px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03)}
+    th{color:#cfe6ff}
+    caption{font-weight:700;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="container"><a class="brand" href="/">IANn</a></div></header>
+  <main class="container">
+    <div class="leaderboard">
+      <h1>Leaderboard — Top 10</h1>
+      <div id="list">Lade...</div>
+      <p><a href="/race.html">Zurück zum Spiel</a></p>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script>
+    (async function(){
+      const container = document.getElementById('list');
+      try{
+        if(window.db){
+          const q = await window.db.collection('scores').orderBy('score','desc').limit(10).get();
+          if(q.empty){ container.innerHTML = '<p>Keine Einträge.</p>'; return; }
+          let html = '<table><caption>Top 10 Scores</caption><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Datum</th></tr></thead><tbody>';
+          let i=1;
+          q.forEach(doc=>{ const d = doc.data(); const dt = new Date(d.createdAt).toLocaleString(); html += `<tr><td>${i}</td><td>${escapeHtml(d.name||'anon')}</td><td>${d.score}</td><td>${dt}</td></tr>`; i++; });
+          html += '</tbody></table>';
+          container.innerHTML = html;
+        } else { container.innerHTML = '<p>Firebase nicht konfiguriert.</p>'; }
+      }catch(e){ console.warn(e); container.innerHTML = '<p>Fehler beim Laden des Leaderboards.</p>'; }
+
+      function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    })();
+  </script>
+</body>
+</html>

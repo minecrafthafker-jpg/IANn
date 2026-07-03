@@ -1,4 +1,4 @@
-// race.js - einfaches Top-Down Rennspiel (Ausweichen)
+// race.js - verbessertes Top-Down Rennspiel mit touch controls and sprite support
 (function(){
   const canvas = document.getElementById('raceCanvas');
   const ctx = canvas.getContext('2d');
@@ -11,6 +11,8 @@
   const playerNameInput = document.getElementById('playerName');
   const saveScoreBtn = document.getElementById('saveScore');
   const closeOverlayBtn = document.getElementById('closeOverlay');
+  const leftBtn = document.getElementById('leftBtn');
+  const rightBtn = document.getElementById('rightBtn');
 
   const cw = canvas.width, ch = canvas.height;
   let laneCount = 3;
@@ -18,6 +20,15 @@
 
   // player
   const car = { lane:1, x:0, y: ch - 120, w: laneWidth * 0.6, h: 100, color: '#ffd966' };
+  const carImg = new Image();
+  carImg.src = 'assets/car.svg';
+  let carImgReady = false;
+  carImg.onload = ()=>{ carImgReady = true; };
+
+  const obstacleImg = new Image();
+  obstacleImg.src = 'assets/obstacle.svg';
+  let obstacleImgReady = false;
+  obstacleImg.onload = ()=>{ obstacleImgReady = true; };
 
   let obstacles = [];
   let spawnTimer = 0;
@@ -27,6 +38,9 @@
   let score = 0;
   let running = true;
   let rafId = null;
+
+  // particles for collision
+  let particles = [];
 
   // load highscore from Firestore (optional)
   const getHighscore = async ()=>{
@@ -79,10 +93,16 @@
     // collision detection
     for(const o of obstacles){
       if(rectIntersect(o.x, o.y, o.w, o.h, car.x, car.y, car.w, car.h)){
+        // create particles
+        createParticles(car.x + car.w/2, car.y + car.h/2);
         gameOver();
         return;
       }
     }
+
+    // update particles
+    particles = particles.filter(p=> p.life>0);
+    for(const p of particles){ p.x += p.vx; p.y += p.vy; p.life -= 1; }
 
     // scoring: increase over time
     if(frame % 30 === 0){ score += 1; scoreEl.textContent = score; }
@@ -119,19 +139,38 @@
     drawRoad();
     // draw obstacles
     for(const o of obstacles){
-      ctx.fillStyle = '#e85a5a';
-      ctx.fillRect(o.x, o.y, o.w, o.h);
+      if(obstacleImgReady){
+        ctx.drawImage(obstacleImg, o.x, o.y, o.w, o.h);
+      } else {
+        ctx.fillStyle = '#e85a5a';
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+      }
       // small highlight
       ctx.fillStyle = 'rgba(255,255,255,0.06)';
       ctx.fillRect(o.x+4, o.y+4, o.w-8, o.h-8);
     }
 
+    // draw particles
+    for(const p of particles){
+      ctx.fillStyle = `rgba(255,200,100,${p.life/40})`;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+    }
+
     // draw car
-    ctx.fillStyle = car.color;
-    ctx.fillRect(car.x, car.y, car.w, car.h);
-    // windows
-    ctx.fillStyle = 'rgba(0,0,0,0.3)';
-    ctx.fillRect(car.x + car.w*0.12, car.y + car.h*0.18, car.w*0.76, car.h*0.4);
+    if(carImgReady){
+      ctx.drawImage(carImg, car.x, car.y, car.w, car.h);
+    } else {
+      ctx.fillStyle = car.color;
+      ctx.fillRect(car.x, car.y, car.w, car.h);
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.fillRect(car.x + car.w*0.12, car.y + car.h*0.18, car.w*0.76, car.h*0.4);
+    }
+  }
+
+  function createParticles(cx, cy){
+    for(let i=0;i<28;i++){
+      particles.push({ x:cx, y:cy, vx:(Math.random()-0.5)*8, vy:(Math.random()-0.5)*8, life:30 + Math.random()*20, size:2+Math.random()*4 });
+    }
   }
 
   function loop(){
@@ -170,7 +209,16 @@
     }
   });
 
+  // touch buttons
+  leftBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); if(car.lane>0){ car.lane--; car.x = car.lane * laneWidth + (laneWidth - car.w)/2; } });
+  rightBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); if(car.lane<laneCount-1){ car.lane++; car.x = car.lane * laneWidth + (laneWidth - car.w)/2; } });
+  leftBtn.addEventListener('mousedown', ()=>{ if(car.lane>0){ car.lane--; car.x = car.lane * laneWidth + (laneWidth - car.w)/2; } });
+  rightBtn.addEventListener('mousedown', ()=>{ if(car.lane<laneCount-1){ car.lane++; car.x = car.lane * laneWidth + (laneWidth - car.w)/2; } });
+
   btnRestart.addEventListener('click', ()=>{ restart(); });
+
+  // navigate to leaderboard page
+  btnLeaderboard.addEventListener('click', ()=>{ window.location.href = 'leaderboard.html'; });
 
   // save score
   saveScoreBtn.addEventListener('click', async ()=>{
@@ -191,25 +239,10 @@
 
   closeOverlayBtn.addEventListener('click', ()=>{ overlay.classList.add('hidden'); });
 
-  btnLeaderboard.addEventListener('click', async ()=>{
-    // open a simple leaderboard in a new window (fetch top 10)
-    if(window.db){
-      try{
-        const q = await window.db.collection('scores').orderBy('score','desc').limit(10).get();
-        let txt = 'Top 10\n';
-        let i=1;
-        q.forEach(doc=>{ const d = doc.data(); txt += `${i}. ${d.name||'anon'} — ${d.score}\n`; i++; });
-        alert(txt);
-      }catch(e){ console.warn('Leaderboard fetch failed', e); alert('Leaderboard konnte nicht geladen werden.'); }
-    } else {
-      alert('Firebase nicht konfiguriert.');
-    }
-  });
-
   // responsive setup
   function fitCanvas(){
     const parent = canvas.parentElement;
-    const w = Math.min(420, parent.clientWidth - 20);
+    const w = Math.min(520, parent.clientWidth - 20);
     canvas.width = w;
     canvas.height = Math.floor(w * (600/360));
     resize();

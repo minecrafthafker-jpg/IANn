@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- simple SVG obstacle sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80" viewBox="0 0 120 80">
+  <rect x="4" y="4" width="112" height="72" rx="8" fill="#e85a5a" stroke="#b94747" stroke-width="3"/>
+  <rect x="14" y="14" width="92" height="52" rx="6" fill="#ff8282" opacity="0.12"/>
+</svg>

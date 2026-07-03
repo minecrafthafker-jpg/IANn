@@ -19,17 +19,22 @@
 
   <main class="container race-container">
     <h1>Rennspiel — Ausweichen</h1>
-    <p class="muted">Steuere das Auto mit Links/Rechts oder A/D. Weiche Hindernissen aus. Highscore wird in Firestore gespeichert.</p>
+    <p class="muted">Steuere das Auto mit Links/Rechts, A/D oder den Touch‑Buttons. Weiche Hindernissen aus. Highscore wird in Firestore gespeichert.</p>
 
     <div class="race-area">
-      <canvas id="raceCanvas" width="360" height="600"></canvas>
+      <canvas id="raceCanvas" width="360" height="600" aria-label="Rennspiel"></canvas>
       <aside class="sidebar">
         <div>Score: <span id="score">0</span></div>
         <div>Highscore: <span id="highscore">—</span></div>
         <button id="btnRestart">Neustart</button>
         <button id="btnLeaderboard">Leaderboard</button>
-        <p class="muted small">Tipp: Für mobile Geräte kippe das Gerät oder benutze Touch-Buttons (nicht implementiert).</p>
+        <p class="muted small">Tipp: Für mobile Geräte benutze die blauen Buttons unten.</p>
       </aside>
+    </div>
+
+    <div class="touch-controls" role="group" aria-label="Touch controls">
+      <button id="leftBtn" class="touch-btn">◀</button>
+      <button id="rightBtn" class="touch-btn">▶</button>
     </div>
 
     <div id="gameOverOverlay" class="overlay hidden">
