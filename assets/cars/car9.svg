@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- car9 (placeholder) -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120">
-  <rect x="8" y="28" width="144" height="64" rx="12" fill="#ffd1f0" stroke="#e099d1" stroke-width="3"/>
-  <circle cx="40" cy="100" r="10" fill="#222"/>
-  <circle cx="120" cy="100" r="10" fill="#222"/>
+  <rect width="100%" height="100%" rx="12" fill="#ffffff" opacity="0.02"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#ffffff">Chevrolet</text>
 </svg>

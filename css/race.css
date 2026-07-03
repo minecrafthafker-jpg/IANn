@@ -1,30 +1,30 @@
-/* race.css - compact, modern layout */
+/* smaller layout tweaks for mobile-first */
 :root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;--touch:#2b8cff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;background:linear-gradient(180deg,var(--bg),#031024);color:#e6eef8}
-.container{max-width:1024px;margin:0 auto;padding:14px}
-.site-header{padding:10px 0}
-.brand{font-weight:700;color:#fff;text-decoration:none}
-.nav a{color:#cfe6ff;margin-left:14px;text-decoration:none}
-.top-row{display:flex;gap:14px}
+.container{max-width:900px;margin:0 auto;padding:12px}
+.site-header{padding:8px 0}
+.brand{font-weight:700;color:#fff;text-decoration:none;font-size:18px}
+.nav a{color:#cfe6ff;margin-left:12px;text-decoration:none;font-size:14px}
+.top-row{display:flex;gap:12px}
 .game-wrap{flex:1}
-#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:10px;border:1px solid rgba(255,255,255,0.04);display:block;width:100%;height:auto}
-.shop{width:320px;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px}
-.player-info{display:grid;gap:6px;margin-bottom:10px;font-size:14px}
-.actions button{margin-right:8px}
-.cars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.car-card{background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;display:flex;align-items:center;gap:8px}
-.car-card img{width:56px;height:40px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,0.02)}
-.car-meta{flex:1;font-size:13px}
-.buy-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--touch);color:white;cursor:pointer;font-size:13px}
-.select-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--accent);color:#071024;cursor:pointer;font-size:13px}
-.muted{color:var(--muted);font-size:13px}
+#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:8px;border:1px solid rgba(255,255,255,0.04);display:block;width:100%;height:auto}
+.shop{width:300px;background:rgba(255,255,255,0.02);padding:8px;border-radius:10px}
+.player-info{display:grid;gap:6px;margin-bottom:8px;font-size:13px}
+.actions button{margin-right:6px;padding:6px 8px}
+.cars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.car-card{background:rgba(255,255,255,0.02);padding:6px;border-radius:8px;display:flex;align-items:center;gap:8px}
+.car-card img{width:52px;height:36px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,0.02)}
+.car-meta{flex:1;font-size:12px}
+.buy-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--touch);color:white;cursor:pointer;font-size:12px}
+.select-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--accent);color:#071024;cursor:pointer;font-size:12px}
+.muted{color:var(--muted);font-size:12px}
 .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)}
 .hidden{display:none}
-.overlay-box{background:#071022;padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:260px}
+.overlay-box{background:#071022;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:240px}
 .overlay-actions{display:flex;gap:8px;margin-top:8px}
 input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit}
-.touch-controls{display:flex;gap:10px;justify-content:center;margin-top:10px}
-.touch-btn{width:72px;height:48px;border-radius:10px;border:none;background:var(--touch);color:white;font-size:20px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
+.touch-controls{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.touch-btn{width:64px;height:44px;border-radius:10px;border:none;background:var(--touch);color:white;font-size:18px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
 .touch-btn:active{transform:translateY(2px)}
-@media(max-width:880px){.top-row{flex-direction:column}.shop{width:100%}.cars-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.top-row{flex-direction:column}.shop{width:100%}.cars-grid{grid-template-columns:repeat(3,1fr)}}
