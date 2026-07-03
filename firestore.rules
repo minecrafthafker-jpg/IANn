@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Scores: allow create only if the client is authenticated OR the submitted timestamp is recent (prevents replay)
+    match /scores/{scoreId} {
+      allow create: if (request.auth != null && request.auth.uid != '')
+                  || (request.auth == null
+                      && request.resource.data.score is number
+                      && request.resource.data.createdAt is timestamp
+                      && request.time - request.resource.data.createdAt < duration.value(15, "m"));
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    // Users: only authenticated users may read/write their own document
+    match /users/{userId} {
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Fallback deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
