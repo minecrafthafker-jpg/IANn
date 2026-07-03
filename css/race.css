@@ -1,14 +1,15 @@
-/* smaller layout tweaks for mobile-first */
+/* tighter mobile-first tweaks: make canvas smaller and shop more compact */
 :root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;--touch:#2b8cff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;background:linear-gradient(180deg,var(--bg),#031024);color:#e6eef8}
-.container{max-width:900px;margin:0 auto;padding:12px}
+.container{max-width:880px;margin:0 auto;padding:12px}
 .site-header{padding:8px 0}
 .brand{font-weight:700;color:#fff;text-decoration:none;font-size:18px}
 .nav a{color:#cfe6ff;margin-left:12px;text-decoration:none;font-size:14px}
 .top-row{display:flex;gap:12px}
 .game-wrap{flex:1}
-#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:8px;border:1px solid rgba(255,255,255,0.04);display:block;width:100%;height:auto}
+/* default canvas smaller for phones */
+#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:8px;border:1px solid rgba(255,255,255,0.04);display:block;width:100%;height:auto;max-width:420px}
 .shop{width:300px;background:rgba(255,255,255,0.02);padding:8px;border-radius:10px}
 .player-info{display:grid;gap:6px;margin-bottom:8px;font-size:13px}
 .actions button{margin-right:6px;padding:6px 8px}
@@ -27,4 +28,10 @@ input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255
 .touch-controls{display:flex;gap:8px;justify-content:center;margin-top:8px}
 .touch-btn{width:64px;height:44px;border-radius:10px;border:none;background:var(--touch);color:white;font-size:18px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
 .touch-btn:active{transform:translateY(2px)}
+/* Landscape/tablet spacing */
+@media(min-width:720px){
+  .top-row{align-items:start}
+  .shop{width:320px}
+  #raceCanvas{max-width:560px}
+}
 @media(max-width:720px){.top-row{flex-direction:column}.shop{width:100%}.cars-grid{grid-template-columns:repeat(3,1fr)}}
