@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IANn — Demo</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#">IANn</a>
+      <nav class="nav">
+        <a href="#about">Über</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Willkommen bei IANn</h1>
+        <p>Ein einfacher, sauberer One‑Page-Auftritt — orientiert an dem verlinkten Design.</p>
+        <a class="cta" href="#contact">Jetzt Kontakt</a>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <h2>Über das Projekt</h2>
+      <p>Dies ist ein Nachbau / stark inspiriertes Design der Seite, angepasst für dein Repository.</p>
+    </section>
+
+    <section id="features" class="section features container">
+      <h2>Features</h2>
+      <div class="grid">
+        <div class="card">Modernes Layout</div>
+        <div class="card">Responsives Design</div>
+        <div class="card">Firebase‑Anbindung (optional)</div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2>Kontakt</h2>
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input id="name" name="name" required />
+
+        <label for="email">E‑Mail</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="message">Nachricht</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Senden</button>
+        <p id="formStatus" class="muted"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 IANn — erstellt für minecrafthafker-jpg</div>
+  </footer>
+
+  <!-- Firebase (compat) - ersetze die Werte in js/firebase-config.js -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
