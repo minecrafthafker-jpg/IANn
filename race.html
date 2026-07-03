@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IANn — Rennspiel</title>
+  <title>IANn — Rennspiel & Shop</title>
   <link rel="stylesheet" href="css/race.css">
 </head>
 <body>
@@ -18,23 +18,34 @@
   </header>
 
   <main class="container race-container">
-    <h1>Rennspiel — Ausweichen</h1>
-    <p class="muted">Steuere das Auto mit Links/Rechts, A/D oder den Touch‑Buttons. Weiche Hindernissen aus. Highscore wird in Firestore gespeichert.</p>
+    <h1>Rennspiel — Ausweichen & Shop</h1>
+    <p class="muted">5 Bahnen, 10 Autos. Sammle Punkte, kaufe Autos, wähle eines aus und spiele. Funktioniert auf PC & Mobile.</p>
 
-    <div class="race-area">
-      <canvas id="raceCanvas" width="360" height="600" aria-label="Rennspiel"></canvas>
-      <aside class="sidebar">
-        <div>Score: <span id="score">0</span></div>
-        <div>Highscore: <span id="highscore">—</span></div>
-        <button id="btnRestart">Neustart</button>
-        <button id="btnLeaderboard">Leaderboard</button>
-        <p class="muted small">Tipp: Für mobile Geräte benutze die blauen Buttons unten.</p>
+    <div class="top-row">
+      <div class="game-wrap">
+        <canvas id="raceCanvas" width="540" height="900" aria-label="Rennspiel"></canvas>
+        <div class="touch-controls" role="group" aria-label="Touch controls">
+          <button id="leftBtn" class="touch-btn">◀</button>
+          <button id="rightBtn" class="touch-btn">▶</button>
+        </div>
+      </div>
+
+      <aside class="shop">
+        <div class="player-info">
+          <div>Punkte: <span id="points">0</span></div>
+          <div>Score: <span id="score">0</span></div>
+          <div>Highscore: <span id="highscore">—</span></div>
+          <div class="actions">
+            <button id="btnRestart">Neustart</button>
+            <button id="btnLeaderboard">Leaderboard</button>
+          </div>
+        </div>
+
+        <div class="shop-list">
+          <h3>Shop — Autos</h3>
+          <div id="carsGrid" class="cars-grid">Lade...</div>
+        </div>
       </aside>
-    </div>
-
-    <div class="touch-controls" role="group" aria-label="Touch controls">
-      <button id="leftBtn" class="touch-btn">◀</button>
-      <button id="rightBtn" class="touch-btn">▶</button>
     </div>
 
     <div id="gameOverOverlay" class="overlay hidden">

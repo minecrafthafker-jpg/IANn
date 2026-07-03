@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- car1 (placeholder) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120">
+  <rect x="8" y="28" width="144" height="64" rx="12" fill="#ffd966" stroke="#c6a94a" stroke-width="3"/>
+  <circle cx="40" cy="100" r="10" fill="#222"/>
+  <circle cx="120" cy="100" r="10" fill="#222"/>
+</svg>

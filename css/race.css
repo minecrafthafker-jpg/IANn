@@ -1,22 +1,30 @@
-/* race.css - erweiterte Styles für das Rennspiel inkl. Touch Controls */
-:root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;--touch:#2b8cff;color-scheme:dark}
+/* race.css - single-screen layout, shop & game */
+:root{--bg:#071022;--card:#081223;--accent:#ff6b6b;--muted:#9aa4b2;--touch:#2b8cff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;background:linear-gradient(180deg,var(--bg),#031024);color:#e6eef8}
-.container{max-width:980px;margin:0 auto;padding:24px}
+.container{max-width:1200px;margin:0 auto;padding:18px}
 .site-header{padding:12px 0}
 .brand{font-weight:700;color:#fff;text-decoration:none}
 .nav a{color:#cfe6ff;margin-left:18px;text-decoration:none}
-.race-area{display:flex;gap:20px;align-items:flex-start}
-#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:12px;border:2px solid rgba(255,255,255,0.04);display:block}
-.sidebar{min-width:160px;color:#e6eef8;font-weight:600}
-button{margin-top:10px;padding:8px 12px;border-radius:8px;border:none;background:var(--accent);color:#071024;cursor:pointer}
-.small{font-size:12px;color:var(--muted)}
+.top-row{display:flex;gap:18px}
+.game-wrap{flex:1}
+#raceCanvas{background:linear-gradient(#0b1830,#071024);border-radius:12px;border:2px solid rgba(255,255,255,0.04);display:block;width:100%;height:auto}
+.shop{width:360px;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
+.player-info{display:grid;gap:8px;margin-bottom:12px}
+.actions button{margin-right:8px}
+.cars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.car-card{background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;display:flex;align-items:center;gap:8px}
+.car-card img{width:64px;height:48px;object-fit:contain}
+.car-meta{flex:1}
+.buy-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--touch);color:white;cursor:pointer}
+.select-btn{padding:6px 8px;border-radius:6px;border:none;background:var(--accent);color:#071024;cursor:pointer}
+.muted{color:var(--muted)}
 .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)}
 .hidden{display:none}
 .overlay-box{background:#071022;padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);min-width:280px}
 .overlay-actions{display:flex;gap:8px;margin-top:10px}
 input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit}
-.touch-controls{display:flex;gap:12px;justify-content:center;margin-top:18px}
-.touch-btn{width:72px;height:56px;border-radius:12px;border:none;background:var(--touch);color:white;font-size:22px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
+.touch-controls{display:flex;gap:12px;justify-content:center;margin-top:12px}
+.touch-btn{width:84px;height:56px;border-radius:12px;border:none;background:var(--touch);color:white;font-size:22px;box-shadow:0 6px 18px rgba(43,140,255,0.22)}
 .touch-btn:active{transform:translateY(2px)}
-@media(max-width:640px){.race-area{flex-direction:column;align-items:center}#raceCanvas{width:320px;height:533px}.sidebar{min-width:unset}}
+@media(max-width:980px){.top-row{flex-direction:column}.shop{width:100%}.cars-grid{grid-template-columns:repeat(3,1fr)}}
